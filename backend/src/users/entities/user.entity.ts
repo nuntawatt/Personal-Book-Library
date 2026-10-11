@@ -15,11 +15,11 @@ export class User {
     username: string;
 
     @Column()
-    passwordHash: string;
+    password_hash: string;
 
     @CreateDateColumn()
-    createdAt: Date;
+    created_at: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date;
+    updated_at: Date;
 }

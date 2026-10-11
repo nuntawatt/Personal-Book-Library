@@ -29,8 +29,8 @@ export class UsersService implements OnModuleInit {
         return;
     }
 
-    const passwordHash = await bcrypt.hash(password, 10);
-    await this.userRepository.save({ username, passwordHash });
+    const password_hash = await bcrypt.hash(password, 10);
+    await this.userRepository.save({ username, password_hash });
     this.logger.log(`Seeded user "${username}"`);
     }
 
