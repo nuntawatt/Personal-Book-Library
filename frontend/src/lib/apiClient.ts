@@ -32,11 +32,10 @@ apiClient.interceptors.response.use(
 // แปลง error เป็นข้อความที่แสดงบนหน้าจอ
 export function getErrorMessage(error: unknown): string {
     if (axios.isAxiosError(error)) {
-        if (!error.response) return 'Unable to connect to the server';
+        if (!error.response) return 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้';
         const message = error.response.data?.message;
         if (Array.isArray(message)) return message.join(', ');
         if (typeof message === 'string') return message;
     }
-
-    return 'Something went wrong. Please try again'
+    return 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
 }
