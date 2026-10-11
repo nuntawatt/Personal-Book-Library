@@ -17,6 +17,7 @@ export function BookList({ books, onDelete }: Props) {
             <div>
                 <h3>{book.title}</h3>
                 {book.description && <p>{book.description}</p>}
+                {/* Backend ส่งความสัมพันธ์ Many-to-Many มาเป็น Array ของ BookAuthor จึงต้องดึง item.author.name แล้วต่อด้วยจุลภาค */}
                 <p className="muted">
                 หมวดหมู่: {book.category?.name ?? '-'} | ผู้แต่ง:{' '}
                 {book.authors.map((item) => item.author.name).join(', ') || '-'}

@@ -9,6 +9,7 @@ export function useBooks() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // ใช้ useCallback ครอบเอาไว้ป้องกันการสร้างฟังก์ชันใหม่ซ้ำ แล้วจะทำงานใหม่เมื่อ filters เปลี่ยน
     const loadBooks = useCallback(async () => {
         setLoading(true);
         setError(null);
@@ -32,7 +33,7 @@ export function useBooks() {
         await loadBooks();
     };
 
-    // ลบสำเร็จ เอาออกจากรายการใน state ทันที
+    // เมื่อลบหนังสือสำเร็จ จะกรอง id ที่ถูกลบออกจาก State ทันทีแบบไม่ต้อง Refresh
     const removeBook = async (id: number) => {
         try {
             await bookService.remove(id);

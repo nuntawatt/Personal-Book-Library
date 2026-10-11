@@ -2,12 +2,13 @@ import type { Author, Category } from '../../lookups/types';
 import type { BookFilters } from '../types';
 
 interface Props {
-  filters: BookFilters;
-  categories: Category[];
-  authors: Author[];
-  onChange: (filters: BookFilters) => void;
+    filters: BookFilters;
+    categories: Category[];
+    authors: Author[];
+    onChange: (filters: BookFilters) => void;
 }
 
+// แปลงค่าจาก <select> เป็นตัวเลข ถ้าเป็นค่าว่างให้เป็น undefined เพื่อไม่ส่งเป็น query param ไป backend
 const toNumber = (value: string) => (value === '' ? undefined : Number(value));
 
 export function BookFilter({ filters, categories, authors, onChange }: Props) {

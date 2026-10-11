@@ -5,7 +5,7 @@ export const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL
 });
 
-// ก่อนส่งทุก Request แนบ token ใน header อัตโนมัติ
+// Interceptor ตอนออกจะแนบ JWT Token ไปกับ Header ทุก Request อัตโนมัติ
 apiClient.interceptors.request.use((config) => {
     const token = tokenStorage.get();
     if (token) {
@@ -13,13 +13,13 @@ apiClient.interceptors.request.use((config) => {
     }
 
     return config;
-
 });
 
-// ถ้า backend ตอบ 401 จะทำการลบ token แล้วพาไปหน้า login
+// Interceptor ตอนรับ ถ้าได้ 401 Token หมดอายุ/ไม่ถูกต้อง และไม่ใช่การยิง Login ให้ลบ Token แล้ว Redirect
 apiClient.interceptors.response.use(
     (response) => response,
     (error) => {
+        // ยกเว้น /login เพื่อไม่ให้เกิด Loop redirect ตอนกรอกรหัสผ่านผิด
         const isLoginRequest = error.config?.url?.includes('/login');
         if (error.response?.status === 401 && !isLoginRequest) {
             tokenStorage.clear();

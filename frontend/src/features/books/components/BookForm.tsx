@@ -18,6 +18,7 @@ export function BookForm({ categories, authors, onSubmit }: Props) {
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // จัดการเลือกและยกเลิกผู้แต่ง Checkbox หลายคน มีอยู่แล้วให้เอาออก ยังไม่มีให้เพิ่มเข้า Array
     const toggleAuthor = (id: number) => {
         setAuthorIds((prev) =>
         prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
@@ -37,11 +38,12 @@ export function BookForm({ categories, authors, onSubmit }: Props) {
         try {
         await onSubmit({
             title: title.trim(),
+            // ถ้า description เป็นค่าว่าง ให้ส่งเป็น undefined เพื่อไม่ให้บันทึกเป็นสตริงเปล่า
             description: description.trim() || undefined,
             category_id: Number(categoryId),
             author_ids: authorIds,
         });
-        // สำเร็จ ล้างฟอร์ม
+        // สำเร็จจะล้างฟอร์ม
         setTitle('');
         setDescription('');
         setCategoryId('');

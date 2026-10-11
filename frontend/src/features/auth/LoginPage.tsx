@@ -7,6 +7,7 @@ import { authService } from './authService';
 
 export function LoginPage() {
     const navigate = useNavigate();
+    // ดึง Query param จาก URL ?required=1 เพื่อแจ้งเตือนใหม่อัตโนมัติ
     const [params] = useSearchParams();
 
     const [username, setUsername] = useState('');
@@ -18,6 +19,7 @@ export function LoginPage() {
     if (params.get('expired')) notice = 'เซสชันหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง';
     else if (params.get('required')) notice = 'กรุณาเข้าสู่ระบบก่อนใช้งาน';
 
+    // ส่งข้อมูลล็อกอิน ถ้าสำเร็จจะบันทึก Token และพากลับหน้าหลัก
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);

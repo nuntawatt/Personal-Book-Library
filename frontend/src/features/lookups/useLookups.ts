@@ -9,6 +9,7 @@ export function useLookups() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        // ใช้ Promise.all ยิงดึงข้อมูลผู้แต่งและหมวดหมู่พร้อมกัน
         Promise.all([lookupService.getAuthors(), lookupService.getCategories()])
         .then(([authorList, categoryList]) => {
             setAuthors(authorList);
