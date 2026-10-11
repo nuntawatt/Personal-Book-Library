@@ -22,9 +22,9 @@ export class Author {
     )
     books: BookAuthor[];
 
-    @CreateDateColumn({name: 'create_at'})
+    @CreateDateColumn()
     created_at: Date;
 
-    @UpdateDateColumn({name: 'update_at'})
+    @UpdateDateColumn()
     updated_at: Date;
 }
