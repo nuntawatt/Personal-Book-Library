@@ -164,3 +164,11 @@ curl -X DELETE http://localhost:3001/api/books/1 \
 curl http://localhost:3001/api/authors
 curl http://localhost:3001/api/categories
 ```
+
+## ER Diagram
+![ER Diagram](docs/ER-diagram.drawio.png)
+
+ความสัมพันธ์:
+- `categories` 1 — N `books`
+- `books` N — N `authors` (ผ่านตาราง `book_authors`)
+- `users` ใช้สำหรับ login อย่างเดียว ไม่มีความสัมพันธ์กับตารางอื่น
