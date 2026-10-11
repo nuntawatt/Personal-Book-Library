@@ -117,7 +117,7 @@ INSERT INTO authors (name) VALUES
 
 ## ตัวอย่างเรียกใช้งาน
 
-ตัวอย่างทั้งหมดใช้ `curl` ทุก endpoint
+ตัวอย่างทั้งหมดใช้ `curl` สำหรับความสะดวกของกรรมการ
 
 ### 1) Login (POST /api/login)
 
@@ -184,5 +184,5 @@ curl http://localhost:3001/api/categories
 ความสัมพันธ์:
 
 - `categories` 1 — N `books`
-- `books` N — N `authors` (ผ่านตาราง `book_authors`)
+- `books` N — N `authors` (ผ่านตาราง book_authors)
 - `users` ใช้สำหรับ login อย่างเดียว ไม่มีความสัมพันธ์กับตารางอื่น
