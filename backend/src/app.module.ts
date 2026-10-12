@@ -27,6 +27,9 @@ import { AuthModule } from './auth/auth.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
 
+      // เชื่อม ssl ต่อนอก render
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+
       entities:[
         User,
         Book,
@@ -35,7 +38,7 @@ import { AuthModule } from './auth/auth.module';
         Author
       ],
 
-      synchronize: true,
+      synchronize: false,
     }),
 
     BooksModule,
