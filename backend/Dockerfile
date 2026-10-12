@@ -14,7 +14,7 @@ RUN npm ci
 
 # คัดลอกซอร์สโค้ดทั้งหมด แล้ว build TypeScript -> JavaScript (ไปที่ dist/)
 COPY . .
-RUN pnpm build
+RUN npm build
 
 # พอร์ตที่ NestJS ฟังอยู่
 EXPOSE 3001
